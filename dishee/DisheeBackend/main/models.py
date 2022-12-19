@@ -82,7 +82,7 @@ class Order(models.Model):
 # date_created
 # body
 # actiate - Boolean field.
-# 
+
 
 class Comment(models.Model):
     id = models.AutoField(primary_key=True, null=False)
