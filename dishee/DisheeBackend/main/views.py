@@ -24,7 +24,7 @@ class OrderDetailsApiView(generics.RetrieveUpdateDestroyAPIView):
 class RecipeListApiView(generics.ListCreateAPIView):
     serializer_class = RecipeSerializer
     queryset = Recipe.objects.all()
-    queryset = [MultiPartParser, FormParser]
+    
 
 class RecipeDetailsApiView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RecipeSerializer

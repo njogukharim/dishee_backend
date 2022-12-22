@@ -44,23 +44,16 @@ class Recipe(models.Model):
     id = models.AutoField(null=False, primary_key=True)
     name = models.CharField(max_length=50, null=False, blank=False)
     description = models.CharField(max_length=500, null=False, blank=False)
-    image = models.ImageField(upload_to=imageUpload)
-    video = models.FileField(upload_to=videoUpload, max_length=255)
-    author = models.ForeignKey(User,on_delete=models.CASCADE, null=False, blank=False, related_name="recipes")
+    image = models.CharField(max_length=255, null=False, blank=False)
+    video = models.CharField(null=False, max_length=255, blank=False)
+    author = models.CharField(max_length=40, null=False, blank=False)
     price = models.IntegerField(null=False, default=0)
     date_time_published = models.DateTimeField(auto_now_add=True)
-    #category = models.
+    
 
     def __str__(self) -> str:
         return f'{self.author.username}\'s Recipe.'
     
-    def save(self, *args, **kwarg) -> None:
-        super().save(*args, **kwarg)
-        img = Image.open(self.image.path)
-        if img.height > 400 or img.width > 400:
-            output_size = (300,300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
 
 
 # ORDERS
@@ -73,7 +66,8 @@ class Recipe(models.Model):
 class Order(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     recipe_name = models.CharField(max_length=255,null=False,blank=False)
-    order_user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False, related_name="orders")
+    order_user = models.CharField(max_length=50, null=False, blank=False)
+    recipe_owner = models.CharField(max_length=50, null=False, blank=False)
     Order_date = models.DateTimeField(auto_now_add=True)
     #recipe_owner = models.
 
@@ -86,9 +80,10 @@ class Order(models.Model):
 
 class Comment(models.Model):
     id = models.AutoField(primary_key=True, null=False)
-    #commenter = models.g
+    commenter = models.CharField(max_length=50, null=False, blank=False)
     body = models.TextField(max_length=500, blank=False)
     pub_date = models.DateTimeField(auto_now_add=True)
+    ref_Type = models.BooleanField()
 
     class Meta:
         order_with_respect_to = 'pub_date'

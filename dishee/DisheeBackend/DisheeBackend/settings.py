@@ -27,7 +27,10 @@ SECRET_KEY= "django-insecure-ict+0+^wif^aw-%cv)l$&odxxubwnor%te0=!17jx(xp73f+"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://disheeapi-env.eba-caci4t2m.us-west-2.elasticbeanstalk.com/']
+ALLOWED_HOSTS = [
+    'http://disheeapi-env.eba-caci4t2m.us-west-2.elasticbeanstalk.com/',
+    "*"
+    ]
 
 
 # Application definition
